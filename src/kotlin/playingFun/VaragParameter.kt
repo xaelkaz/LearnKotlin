@@ -31,3 +31,13 @@ printAll("A", 1, 'c') // Prints: A,1,c
 val texts = arrayOf("B", "C", "D")
 printAll(*texts) // Prints: Texts are: B,C,D
 printAll("A", *texts, "E") // Prints: Texts are: A,B,C,D,E
+
+
+override fun onOptionsItemSelected(item: MenuItem): Boolean = when
+{
+    item.itemId == android.R.id.home -> {
+        onBackPressed()
+        true
+    }
+    else -> super.onOptionsItemSelected(item)
+}
