@@ -105,7 +105,7 @@ toast("Long Toast!!", Toast.LENGTH_LONG)
 inline fun <reified T : Activity> Activity.navigate(
     id: String, 
     sharedView: View? = null,
-    transitionName: String? = null) { }
+    transitionName: String? = null){}
 
 navigate<DetailActivity>("2")
 navigate<DetailActivity>("2", sharedView, TRANSITION_NAME)
