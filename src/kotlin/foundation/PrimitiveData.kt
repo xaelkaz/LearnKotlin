@@ -12,3 +12,4 @@ val array3x =  longArrayOf(1, 2, 3)
 
 val array = arrayOfNulls<String>(3) // Prints: [null, null, null]
 val arraySize = Array (5) { it * 2 }
+

@@ -1,4 +1,4 @@
-package kotlin.ClassObject
+package kotlin.classObject
 
 class Car (var speed: Double)
 
