@@ -103,11 +103,9 @@ toast("Long Toast!!", Toast.LENGTH_LONG)
 // Other
 
 inline fun <reified T : Activity> Activity.navigate(
-         id: String, 
-        sharedView: View? = null,
-         transitionName: String? = null) {          
-    ...
- }
+    id: String, 
+    sharedView: View? = null,
+    transitionName: String? = null) { }
 
 navigate<DetailActivity>("2")
 navigate<DetailActivity>("2", sharedView, TRANSITION_NAME)
@@ -184,7 +182,7 @@ val Context.alarmManager: AlarmManager
     get() = getSystemService(Context.ALARM_SERVICE) 
         as AlarmManager
 
-        
+
 context.preferences.contains("Some Key") 
 context.inflater.inflate(R.layout.activity_main, root) 
 context.alarmManager.setRepeating(ELAPSED_REALTIME, triggerAt, 
