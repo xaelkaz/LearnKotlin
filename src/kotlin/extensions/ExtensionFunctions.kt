@@ -116,3 +116,76 @@ navigate<DetailActivity>(id = "2", transitionName = TRANSITION_NAME)
 
 fun View.show() { visibility = View.VISIBLE }
 fun View.hide() { visibility = View.GONE }
+
+
+/* Extension Functions and Properties */
+
+data class Item(val name: String, val price: Float)                                   // 1  
+
+data class Order(val items: Collection<Item>)                                         // 2  
+
+fun Order.maxPricedItemValue(): Float = this.items.maxBy { it.price }?.price ?: 0F    // 3  
+fun Order.maxPricedItemName() = this.items.maxBy { it.price }?.name ?: "NO_PRODUCTS"  // 4
+
+val Order.commaDelimitedItemNames: String
+get() = items.map { it.name }.joinToString()//<3>
+
+fun main(args: Array<String>) {
+
+    
+    val order = Order(listOf(Item("Bread", 25.0F), Item("Wine", 29.0F), Item("Water", 12.0F)))
+    
+    println("Max priced item name: ${order.maxPricedItemName()}")
+    println("Max priced item value: ${order.maxPricedItemValue()}")
+    println("Items: ${order.commaDelimitedItemNames}")
+
+}
+
+fun <T> T?.nullSafeToString() = this?.toString() ?: "NULL"  // 1
+fun main(args: Array<String>) {
+    println(null.nullSafeToString())
+    println("Kotlin".nullSafeToString())
+}
+
+fun String.hasAmpersand : Boolean
+    get() = this.contains("&")
+
+println("hello&".hasAmpersand)
+
+
+/* Properties */
+
+var View.visible: Boolean 
+get() = visibility == View.VISIBLE 
+set(value) { 
+    visibility = if (value) View.VISIBLE else View.GONE 
+}
+
+
+button.visible = true // the same as show() 
+button.visible = false // the same as hide() 
+
+Also, we can check view element visibility: 
+
+if(button.visible) { /* ... */ } 
+
+
+// Other properties
+
+val Context.preferences: SharedPreferences 
+ get() = PreferenceManager 
+        .getDefaultSharedPreferences(this) 
+
+val Context.inflater: LayoutInflater 
+    get() = getSystemService(Context.LAYOUT_INFLATER_SERVICE) 
+        as LayoutInflater 
+
+val Context.alarmManager: AlarmManager 
+    get() = getSystemService(Context.ALARM_SERVICE) 
+        as AlarmManager
+
+        
+context.preferences.contains("Some Key") 
+context.inflater.inflate(R.layout.activity_main, root) 
+context.alarmManager.setRepeating(ELAPSED_REALTIME, triggerAt, 
+   interval, pendingIntent)
